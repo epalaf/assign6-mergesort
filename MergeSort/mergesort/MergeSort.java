@@ -6,8 +6,10 @@ public class MergeSort {
 		int[] array1 = {11,43,87,27,54,8,32,71,44,12};
 		
 		showArray(array1);
-		mergeSort(array1);
-		showArray(array1);
+		Slice(array1, 0, array1.length);
+		
+		//mergeSort(array1);
+		//showArray(array1);
 		
 	}
 	
@@ -24,6 +26,43 @@ public class MergeSort {
 		System.out.printf("]\n");
 	}
 	
+	public static void Slice(int[] arr, int start, int end) {
+		int mid = start + end / 2;
+		int[] left = new int[mid];
+		int[] right = new int[mid];
+		int lc = 0;
+		int rc = 0;
+		
+		for (int i = start; i < end; i++) {
+			if ( i < mid) {
+				left[lc] = arr[i];
+				lc++;
+			}
+			if (i > mid) {
+				right[rc] = arr[i];
+				rc++;
+			}
+		}
+		
+		showArray(left);
+		System.out.print("U");
+		showArray(right);
+		
+		
+		
+		
+	}
+	
+	public static void Partition(int[] arr, int start, int end) {
+	/*	int mid = (start + end) / 2;
+		
+		if (start < end) {
+			int[]
+			for (int i = start; i < end; i++) {
+				
+			}
+		} */
+	}
 
 	
 	private static void mergeSort(int[] theArray, int left, int right) {
