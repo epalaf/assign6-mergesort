@@ -3,11 +3,11 @@ package mergesort;
 public class MergeSort {
 
 	public static void main(String[] args) {
-		int[] array1 = {11,43,87,27,54,8,32,71,44,12};
+		int[] array1 = {11,43,87,27,54,8,32,71,44,12, 6, 4};
 		
 		showArray(array1);
 		Slice(array1, 0, array1.length);
-		
+		mergeSort(array1);
 		//mergeSort(array1);
 		//showArray(array1);
 		
@@ -28,17 +28,27 @@ public class MergeSort {
 	
 	public static void Slice(int[] arr, int start, int end) {
 		int mid = start + end / 2;
-		int[] left = new int[mid];
-		int[] right = new int[mid];
+		int[] left;
+		int[] right;
 		int lc = 0;
 		int rc = 0;
+		
+		if (arr.length % 2 == 0) {
+			left = new int[mid];
+			right = new int[mid];
+		}
+		
+		else {
+			left = new int[mid];
+			right = new int[mid + 1];
+		}
 		
 		for (int i = start; i < end; i++) {
 			if ( i < mid) {
 				left[lc] = arr[i];
 				lc++;
 			}
-			if (i > mid) {
+			else /*(i >= mid) */{
 				right[rc] = arr[i];
 				rc++;
 			}
@@ -65,7 +75,7 @@ public class MergeSort {
 	}
 
 	
-	private static void mergeSort(int[] theArray, int left, int right) {
+	private static void mergeSort(int[] arr, int start, int end) {
 		//**************************************************************
 		//*  Recursive Merge Sort                                      *
 		//*------------------------------------------------------------*
@@ -75,6 +85,11 @@ public class MergeSort {
 		//*  4. Replace the original array section with the merged     *
 		//*     array.                                                 *
 		//**************************************************************
+		int mid = start + end / 2;
+		if (arr.length > 1) {
+			Slice(arr, start, mid);
+			//Slice(arr, mid + 1, end);
+		}
 
 	}
 	
