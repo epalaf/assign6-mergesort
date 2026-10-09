@@ -3,7 +3,7 @@ package mergesort;
 public class MergeSort {
 
 	public static void main(String[] args) {
-		int[] array1 = {11,43,87,27,54,8,32,71,44,12, 6, 4};
+		int[] array1 = {11,43,87,27,54,8,32,71,44, 12};
 		
 		showArray(array1);
 		Slice(array1, 0, array1.length);
@@ -63,6 +63,10 @@ public class MergeSort {
 		
 	}
 	
+	public static void Merge(int[] arr, int start, int end) {
+		
+	}
+	
 	public static void Partition(int[] arr, int start, int end) {
 	/*	int mid = (start + end) / 2;
 		
@@ -85,10 +89,46 @@ public class MergeSort {
 		//*  4. Replace the original array section with the merged     *
 		//*     array.                                                 *
 		//**************************************************************
+		int[] left;
+		int[] right;
+		int lc = 0;
+		int rc = 0;
+		
+		
 		int mid = start + end / 2;
-		if (arr.length > 1) {
-			Slice(arr, start, mid);
+		
+		if (mid * 2 == arr.length) {
+			left = new int[mid];
+			right = new int[mid];
+			//Slice(arr, start, mid);
 			//Slice(arr, mid + 1, end);
+			for (int i = start; i < end; i++) {
+				if ( i < mid) {
+					left[lc] = arr[i];
+					lc++;
+				}
+				else /*(i >= mid) */{
+					right[rc] = arr[i];
+					rc++;
+				}
+			}
+	
+		}
+		
+		else {
+			left = new int[mid];
+			right = new int[mid + 1];
+			
+			for (int i = start; i < end; i++) {
+				if ( i < mid) {
+					left[lc] = arr[i];
+					lc++;
+				}
+				else /*(i >= mid) */{
+					right[rc] = arr[i];
+					rc++;
+				}
+			}
 		}
 
 	}
