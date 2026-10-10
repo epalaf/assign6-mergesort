@@ -63,8 +63,36 @@ public class MergeSort {
 		
 	}
 	
-	public static void Merge(int[] arr, int start, int end) {
+	public static void Merge(int[] arr, int left, int right, int end) {
+		int leftP = left - right ;
+		int rightP = end - right;
+		int startRight = right;
 		
+		
+		int[] leftArr = new int[leftP];
+		int[] rightArr = new int[rightP];
+		
+		for (int i = 0; i < leftP; i++) {
+			leftArr[i] = arr[left + i];
+		}
+		
+		for (int i = 0; i < rightP; i++) {
+			rightArr[i] = arr[right + i];
+		}	
+		
+		int indLeft = 0;
+		int indRight = 0;
+		
+		for (int i = left; i < end; i++) {
+			if (leftArr[indLeft] <= rightArr[indRight]) {
+				arr[i] = leftArr[indLeft];
+				indLeft++;
+			}
+			else {
+				arr[i] = rightArr[indRight];
+				indRight++;
+			}
+		}
 	}
 	
 	public static void Partition(int[] arr, int start, int end) {
@@ -89,46 +117,44 @@ public class MergeSort {
 		//*  4. Replace the original array section with the merged     *
 		//*     array.                                                 *
 		//**************************************************************
+
+	/*	int mid = (start + end) / 2;
 		int[] left;
 		int[] right;
 		int lc = 0;
 		int rc = 0;
 		
-		
-		int mid = start + end / 2;
-		
-		if (mid * 2 == arr.length) {
+		if (mid * 2 == end) {
 			left = new int[mid];
 			right = new int[mid];
-			//Slice(arr, start, mid);
-			//Slice(arr, mid + 1, end);
-			for (int i = start; i < end; i++) {
-				if ( i < mid) {
-					left[lc] = arr[i];
-					lc++;
-				}
-				else /*(i >= mid) */{
-					right[rc] = arr[i];
-					rc++;
-				}
-			}
-	
 		}
 		
 		else {
 			left = new int[mid];
 			right = new int[mid + 1];
-			
-			for (int i = start; i < end; i++) {
-				if ( i < mid) {
-					left[lc] = arr[i];
-					lc++;
-				}
-				else /*(i >= mid) */{
-					right[rc] = arr[i];
-					rc++;
-				}
+		}
+		
+		for (int i = start; i < end; i++) {
+			if ( i < mid) {
+				left[lc] = arr[i];
+				lc++;
 			}
+			else if (i >= mid) {
+				right[rc] = arr[i];
+				rc++;
+			}
+		}
+		
+		showArray(left);
+		System.out.print("U");
+		showArray(right);	 */
+		
+		if (start < end) {
+			int mid = (start + end) / 2;
+			mergeSort(arr, start, mid);
+			mergeSort(arr, mid + 1, end);
+			Merge(arr, start, mid, end);
+			
 		}
 
 	}
@@ -137,6 +163,6 @@ public class MergeSort {
 		//**********************************************
 		//*  Class Wrapper for the recursive mergeSort *
 		//**********************************************
-		mergeSort(array,0,array.length-1);
+		mergeSort(array,0,array.length);
 	}
 }
